@@ -154,7 +154,7 @@ export const uploadImage = async (pathname, image, preferences) => {
     if (typeof filepath !== 'string') {
       isPath = false
       const data = new Uint8Array(filepath)
-      filepath = path.join(tmpdir(), String(new Date().getTime()))
+      filepath = path.join(tmpdir(), String(new Date().getTime()) + '.png')
       await fs.writeFile(filepath, data)
     }
     if (uploader === 'picgo') {
@@ -173,7 +173,7 @@ export const uploadImage = async (pathname, image, preferences) => {
         }
       })
     } else {
-      cp.execFile(cliScript, [filepath], async (err, data) => {
+      cp.exec(`${cliScript} "${filepath}"`, async (err, data) => {
         if (!isPath) {
           await fs.unlink(filepath)
         }
@@ -182,6 +182,15 @@ export const uploadImage = async (pathname, image, preferences) => {
         }
         re(data.trim())
       })
+      // cp.execFile(cliScript, [filepath], async (err, data) => {
+      //   if (!isPath) {
+      //     await fs.unlink(filepath)
+      //   }
+      //   if (err) {
+      //     return rj(err)
+      //   }
+      //   re(data.trim())
+      // })
     }
   }
 
@@ -238,12 +247,12 @@ export const uploadImage = async (pathname, image, preferences) => {
   return promise
 }
 
-export const isFileExecutableSync = (filepath) => {
-  try {
-    const stat = statSync(filepath)
-    return stat.isFile() && (stat.mode & (constants.S_IXUSR | constants.S_IXGRP | constants.S_IXOTH)) !== 0
-  } catch (err) {
-    // err ignored
-    return false
-  }
-}
+// export const isFileExecutableSync = (filepath) => {
+//   try {
+//     const stat = statSync(filepath)
+//     return stat.isFile() && (stat.mode & (constants.S_IXUSR | constants.S_IXGRP | constants.S_IXOTH)) !== 0
+//   } catch (err) {
+//     // err ignored
+//     return false
+//   }
+// }

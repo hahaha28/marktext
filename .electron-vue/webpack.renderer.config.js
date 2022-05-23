@@ -152,24 +152,24 @@ const rendererConfig = {
     __filename: !isProduction
   },
   plugins: [
-    new ESLintPlugin({
-      cache: !isProduction,
-      extensions: ['js', 'vue'],
-      files: [
-        'src',
-        'test'
-      ],
-      exclude: [
-        'node_modules'
-      ],
-      emitError: true,
-      failOnError: true,
-      // NB: Threads must be disabled, otherwise no errors are emitted.
-      threads: false,
-      formatter: require('eslint-friendly-formatter'),
-      context: path.resolve(__dirname, '../'),
-      overrideConfigFile: '.eslintrc.js'
-    }),
+    // new ESLintPlugin({
+    //   cache: !isProduction,
+    //   extensions: ['js', 'vue'],
+    //   files: [
+    //     'src',
+    //     'test'
+    //   ],
+    //   exclude: [
+    //     'node_modules'
+    //   ],
+    //   emitError: true,
+    //   failOnError: true,
+    //   // NB: Threads must be disabled, otherwise no errors are emitted.
+    //   threads: false,
+    //   formatter: require('eslint-friendly-formatter'),
+    //   context: path.resolve(__dirname, '../'),
+    //   overrideConfigFile: '.eslintrc.js'
+    // }),
     new SpritePlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',

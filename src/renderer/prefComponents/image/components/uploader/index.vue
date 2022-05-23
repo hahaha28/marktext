@@ -72,7 +72,7 @@
 import { shell } from 'electron'
 import services, { isValidService } from './services.js'
 import legalNoticesCheckbox from './legalNoticesCheckbox'
-import { isFileExecutableSync } from '@/util/fileSystem'
+// import { isFileExecutableSync } from '@/util/fileSystem'
 import CurSelect from '@/prefComponents/common/select'
 import commandExists from 'command-exists'
 import notice from '@/services/notification'
@@ -130,10 +130,11 @@ export default {
       return !this.githubToken || !this.github.owner || !this.github.repo
     },
     cliScriptDisable () {
-      if (!this.cliScript) {
-        return true
-      }
-      return !isFileExecutableSync(this.cliScript)
+      return false
+      // if (!this.cliScript) {
+      //   return true
+      // }
+      // return !isFileExecutableSync(this.cliScript)
     }
   },
   watch: {
