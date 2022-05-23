@@ -51,23 +51,23 @@ const mainConfig = {
     path: path.join(__dirname, '../dist/electron')
   },
   plugins: [
-    new ESLintPlugin({
-      extensions: ['js'],
-      files: [
-        'src',
-        'test'
-      ],
-      exclude: [
-        'node_modules'
-      ],
-      emitError: true,
-      failOnError: true,
-      // NB: Threads must be disabled, otherwise no errors are emitted.
-      threads: false,
-      formatter: require('eslint-friendly-formatter'),
-      context: path.resolve(__dirname, '../'),
-      overrideConfigFile: '.eslintrc.js'
-    }),
+    // new ESLintPlugin({
+    //   extensions: ['js'],
+    //   files: [
+    //     'src',
+    //     'test'
+    //   ],
+    //   exclude: [
+    //     'node_modules'
+    //   ],
+    //   emitError: true,
+    //   failOnError: true,
+    //   // NB: Threads must be disabled, otherwise no errors are emitted.
+    //   threads: false,
+    //   formatter: require('eslint-friendly-formatter'),
+    //   context: path.resolve(__dirname, '../'),
+    //   overrideConfigFile: '.eslintrc.js'
+    // }),
     // Add global environment definitions.
     new webpack.DefinePlugin(getEnvironmentDefinitions())
   ],
